@@ -25,6 +25,8 @@ const App = () => {
 
   const handleTabDelete = (tab) => {
     if (window.confirm(`Are you sure you want to delete "${tab.name}"?`)) {
+      console.log(tabs);
+      console.log(activeTab);
       const newTabs = tabs.filter((t) => t !== tab);
       setTabs(newTabs);
       setActiveTab(null);
@@ -92,12 +94,12 @@ const App = () => {
   };
 
   return (
-    <div>
-      <div>
+    <main>
+      <section className="tabs">
         {tabs.map((tab, i) => (
           <div key={i}>
             <button onClick={() => handleTabClick(tab)}>{tab.name}</button>
-            <button onClick={() => handleTabDelete(tab)}>Delete</button>
+            {/* <button onClick={() => handleTabDelete(tab)}>Delete</button> */}
           </div>
         ))}
         <div>
@@ -107,69 +109,72 @@ const App = () => {
             onChange={handleNewTabNameChange}
             placeholder="New Tab Name"
           />
-          <button onClick={handleNewTab}>Add Tab</button>
+          <div>
+            <button onClick={handleNewTab}>Add Tab</button>
+          </div>
         </div>
-      </div>
+      </section>
       {activeTab && (
         <div>
           <h2>{activeTab.name}</h2>
-          <table>
-            <thead>
-              <tr>
-                <th>Name</th>
-                <th>Value</th>
-                <th>Action</th>
-              </tr>
-            </thead>
-            <tbody>
-              {activeTab.items.map((item, i) => (
-                <tr key={i}>
-                  <td>
-                    <input
-                      type="text"
-                      value={item.name}
-                      onChange={(e) =>
-                        handleItemEdit(i, e.target.value, item.value)
-                      }
-                    />
-                  </td>
-                  <td>
-                    <input
-                      type="number"
-                      value={item.value}
-                      onChange={(e) =>
-                        handleItemEdit(i, item.name, e.target.value)
-                      }
-                    />
-                  </td>
-                  <td>
-                    <button onClick={() => handleItemDelete(i)}>Delete</button>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
           <div>
             <input
               type="text"
               onChange={handleTabNameChange}
               value={activeTab.name}
             />
+
+            <button onClick={() => handleTabDelete(activeTab)}>Delete</button>
+          </div>
+          <div className="itemsSection">
+            <div>
+              <h3>Name</h3>
+              {activeTab.items.map((item, i) => (
+                <input
+                  key={i}
+                  type="text"
+                  value={item.name}
+                  onChange={(e) =>
+                    handleItemEdit(i, e.target.value, item.value)
+                  }
+                />
+              ))}
+            </div>
+            <div>
+              <h3>Price</h3>
+              {activeTab.items.map((item, i) => (
+                <input
+                  key={i}
+                  type="number"
+                  value={item.value}
+                  onChange={(e) => handleItemEdit(i, item.name, e.target.value)}
+                />
+              ))}
+            </div>
+            <div>
+              {activeTab.items.map((item, i) => (
+                <button key={i} onClick={() => handleItemDelete(i)}>
+                  Delete
+                </button>
+              ))}
+            </div>
           </div>
           <div>
             <button onClick={() => handleNewItem("", "")}>Add Item</button>
           </div>
-          <div>
-            Total:{" "}
-            {activeTab.items.reduce(
-              (total, item) => total + parseFloat(item.value),
-              0
-            )}
-          </div>
+          <section className="tabTotal">
+            <h1>
+              Total:{" "}
+              {activeTab.items.reduce(
+                (total, item) => total + parseFloat(item.value),
+                0
+              )}
+            </h1>
+          </section>
         </div>
       )}
-      <div>Overall Total: {handleOverallTotal()}</div>
-    </div>
+      <h1>Overall Total: {handleOverallTotal()}</h1>
+    </main>
   );
 };
 

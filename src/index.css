@@ -4,10 +4,16 @@ body {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   box-sizing: border-box;
   background-color: #242424;
+  color: white;
 }
 
 button {
   margin: 0.5rem;
   padding: 0.5rem 1rem;
   border-radius: 5px;
+}
+
+.itemsSection {
+  display: flex;
+  flex-direction: row;
 }
