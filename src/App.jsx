@@ -95,22 +95,28 @@ const App = () => {
 
   return (
     <main>
-      <section className="tabs">
-        {tabs.map((tab, i) => (
-          <div key={i}>
-            <button onClick={() => handleTabClick(tab)}>{tab.name}</button>
-            {/* <button onClick={() => handleTabDelete(tab)}>Delete</button> */}
-          </div>
-        ))}
+      <section className="tabsSection">
+        <div className="tabs">
+          {tabs.map((tab, i) => (
+            <div key={i}>
+              <button className="tab" onClick={() => handleTabClick(tab)}>
+                {tab.name}
+              </button>
+              {/* <button onClick={() => handleTabDelete(tab)}>Delete</button> */}
+            </div>
+          ))}
+        </div>
         <div>
           <input
             type="text"
             value={newTabName}
             onChange={handleNewTabNameChange}
-            placeholder="New Tab Name"
+            placeholder="New Product"
           />
           <div>
-            <button onClick={handleNewTab}>Add Tab</button>
+            <button className="addTab" onClick={handleNewTab}>
+              Add Product
+            </button>
           </div>
         </div>
       </section>
@@ -123,11 +129,15 @@ const App = () => {
               onChange={handleTabNameChange}
               value={activeTab.name}
             />
-
-            <button onClick={() => handleTabDelete(activeTab)}>Delete</button>
+            <button
+              className="deleteTab"
+              onClick={() => handleTabDelete(activeTab)}
+            >
+              Delete
+            </button>
           </div>
           <div className="itemsSection">
-            <div>
+            <div className="itemsNames">
               <h3>Name</h3>
               {activeTab.items.map((item, i) => (
                 <input
@@ -140,7 +150,7 @@ const App = () => {
                 />
               ))}
             </div>
-            <div>
+            <div className="itemsPrices">
               <h3>Price</h3>
               {activeTab.items.map((item, i) => (
                 <input
@@ -151,20 +161,26 @@ const App = () => {
                 />
               ))}
             </div>
-            <div>
+            <div className="itemsDelete">
               {activeTab.items.map((item, i) => (
-                <button key={i} onClick={() => handleItemDelete(i)}>
+                <button
+                  className="itemDelete"
+                  key={i}
+                  onClick={() => handleItemDelete(i)}
+                >
                   Delete
                 </button>
               ))}
             </div>
           </div>
           <div>
-            <button onClick={() => handleNewItem("", "")}>Add Item</button>
+            <button className="addItem" onClick={() => handleNewItem("", "")}>
+              Add Item
+            </button>
           </div>
           <section className="tabTotal">
             <h1>
-              Total:{" "}
+              Total:{" $"}
               {activeTab.items.reduce(
                 (total, item) => total + parseFloat(item.value),
                 0
@@ -173,7 +189,7 @@ const App = () => {
           </section>
         </div>
       )}
-      <h1>Overall Total: {handleOverallTotal()}</h1>
+      <h1>Overall Total: ${handleOverallTotal()}</h1>
     </main>
   );
 };
