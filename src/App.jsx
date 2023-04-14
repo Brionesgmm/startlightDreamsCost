@@ -95,6 +95,7 @@ const App = () => {
 
   return (
     <main>
+      <img src="dreamcatcher.gif" />
       <section className="tabsSection">
         <div className="tabs">
           {tabs.map((tab, i) => (
