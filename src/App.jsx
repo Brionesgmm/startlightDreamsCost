@@ -102,12 +102,12 @@ const App = () => {
               <button className="tab" onClick={() => handleTabClick(tab)}>
                 {tab.name}
               </button>
-              {/* <button onClick={() => handleTabDelete(tab)}>Delete</button> */}
             </div>
           ))}
         </div>
         <div>
           <input
+            className="tabNameInput"
             type="text"
             value={newTabName}
             onChange={handleNewTabNameChange}
@@ -122,8 +122,8 @@ const App = () => {
       </section>
       {activeTab && (
         <div>
-          <h2>{activeTab.name}</h2>
-          <div>
+          <h2 className="productName">{activeTab.name}</h2>
+          <div className="tabNameChange">
             <input
               type="text"
               onChange={handleTabNameChange}
@@ -137,7 +137,36 @@ const App = () => {
             </button>
           </div>
           <div className="itemsSection">
-            <div className="itemsNames">
+            <div className="itemsTitle">
+              <h3>Current Items</h3>
+            </div>
+            {activeTab.items.map((item, i) => (
+              <div className="singleItem">
+                <input
+                  key={i}
+                  type="text"
+                  value={item.name}
+                  onChange={(e) =>
+                    handleItemEdit(i, e.target.value, item.value)
+                  }
+                  placeholder="Item Name"
+                />
+                <input
+                  key={i}
+                  type="number"
+                  value={item.value}
+                  onChange={(e) => handleItemEdit(i, item.name, e.target.value)}
+                />
+                <button
+                  className="itemDelete"
+                  key={i}
+                  onClick={() => handleItemDelete(i)}
+                >
+                  Delete
+                </button>
+              </div>
+            ))}
+            {/* <div className="itemsNames">
               <h3>Name</h3>
               {activeTab.items.map((item, i) => (
                 <input
@@ -149,8 +178,8 @@ const App = () => {
                   }
                 />
               ))}
-            </div>
-            <div className="itemsPrices">
+            </div> */}
+            {/* <div className="itemsPrices">
               <h3>Price</h3>
               {activeTab.items.map((item, i) => (
                 <input
@@ -160,8 +189,8 @@ const App = () => {
                   onChange={(e) => handleItemEdit(i, item.name, e.target.value)}
                 />
               ))}
-            </div>
-            <div className="itemsDelete">
+            </div> */}
+            {/* <div className="itemsDelete">
               {activeTab.items.map((item, i) => (
                 <button
                   className="itemDelete"
@@ -171,7 +200,7 @@ const App = () => {
                   Delete
                 </button>
               ))}
-            </div>
+            </div> */}
           </div>
           <div>
             <button className="addItem" onClick={() => handleNewItem("", "")}>

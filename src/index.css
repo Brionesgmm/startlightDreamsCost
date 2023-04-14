@@ -23,11 +23,12 @@ main {
 
 button {
   margin: 0.25rem;
-  padding: 0.5rem 1rem;
+  padding: 0.75rem 1.25rem;
   border-radius: 5px;
   border: none;
   background-color: #4681f4;
   color: white;
+  font-size: 1.25rem;
   font-weight: bold;
 }
 
@@ -90,20 +91,53 @@ button {
   background-color: #990000;
 }
 
-.itemsSection {
+.tabNameChange {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+input {
+  padding: 0.5rem 1.5rem;
+  font-size: 1rem;
+}
+
+.productName {
+  margin-top: 0.25rem;
+  margin-bottom: 0.5rem;
+}
+
+.itemsTitle > h3 {
+  margin: 0;
+  margin-top: 0.5rem;
+}
+
+.singleItem {
   display: flex;
   flex-direction: row;
   justify-content: center;
+  flex-wrap: wrap;
+  margin: 1rem;
 }
 
-.itemsNames,
+.singleItem > * {
+  flex-basis: 100%;
+  margin: 0.25rem 0;
+}
+
+.itemsTitle {
+  display: flex;
+  justify-content: space-around;
+}
+
+/* .itemsNames,
 .itemsPrices,
 .itemsDelete {
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 0 0.5rem;
-}
+} */
 
 /* Adding Star affect on title on site */
 
