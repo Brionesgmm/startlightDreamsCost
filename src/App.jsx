@@ -95,7 +95,7 @@ const App = () => {
 
   return (
     <main>
-      <img src="dreamcatcher.gif" />
+      <img className="imageBG" src="starDreamcatcherBG.jpg" />
       <section className="tabsSection">
         <div className="tabs">
           {tabs.map((tab, i) => (
