@@ -31,26 +31,44 @@ button {
   padding: 0.75rem 1.25rem;
   border-radius: 5px;
   border: none;
-  background-color: #4681f4;
+  background-color: #f8d964;
   color: white;
   font-size: 1.25rem;
   font-weight: bold;
 }
 
-.tab:focus,
+.tab {
+  color: #000000;
+}
+
 .addTab:focus {
   outline: 2px solid #55c2da;
   outline-offset: 4px;
 }
 
+.tab:focus {
+  outline: 2px solid #f8d964;
+  outline-offset: 4px;
+}
+
 .tab:hover {
-  background-color: #56b9f7;
-  background-image: linear-gradient(to bottom, #56b9f7 0%, #4681f4 100%);
+  background-color: #facf5a;
+  background-image: linear-gradient(
+    to bottom,
+    #facf5a 0%,
+    #f5b041 50%,
+    #f8d964 100%
+  );
 }
 
 .tab:active {
-  background-color: #7dc3f2;
-  background-image: linear-gradient(to bottom, #7dc3f2 0%, #55c2da 100%);
+  background-color: #ffd700;
+  background-image: linear-gradient(
+    to bottom,
+    #ffd700 0%,
+    #e2b607 50%,
+    #facf5a 100%
+  );
 }
 
 .addTab,
