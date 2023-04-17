@@ -211,11 +211,9 @@ const App = () => {
           <section className="tabTotal">
             <h1>
               Total:{" $"}
-              {Number(
-                activeTab.items
-                  .reduce((total, item) => total + parseFloat(item.value), 0)
-                  .toFixed(2)
-              )}
+              {activeTab.items
+                .reduce((total, item) => total + parseFloat(item.value), 0)
+                .toFixed(2)}
             </h1>
           </section>
         </div>
