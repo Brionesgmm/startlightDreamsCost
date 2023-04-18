@@ -97,77 +97,84 @@ const App = () => {
     <main>
       <img className="imageBG" src="starDreamcatcherBG.jpg" />
       <section className="tabsSection">
-        <div className="tabs">
-          {tabs.map((tab, i) => (
-            <div key={i}>
-              <button className="tab" onClick={() => handleTabClick(tab)}>
-                {tab.name}
-              </button>
-            </div>
-          ))}
-        </div>
-        <div>
-          <input
-            className="tabNameInput"
-            type="text"
-            value={newTabName}
-            onChange={handleNewTabNameChange}
-            placeholder="New Product"
-          />
-          <div>
-            <button className="addTab" onClick={handleNewTab}>
-              Add Product
-            </button>
-          </div>
-        </div>
-      </section>
-      {activeTab && (
-        <div>
-          <h2 className="productName">{activeTab.name}</h2>
-          <div className="tabNameChange">
-            <input
-              type="text"
-              onChange={handleTabNameChange}
-              value={activeTab.name}
-            />
-            <button
-              className="deleteTab"
-              onClick={() => handleTabDelete(activeTab)}
-            >
-              Delete
-            </button>
-          </div>
-          <div className="itemsSection">
-            <div className="itemsTitle">
-              <h3>Current Items</h3>
-            </div>
-            {activeTab.items.map((item, i) => (
-              <div className="singleItem">
-                <input
-                  key={i}
-                  type="text"
-                  value={item.name}
-                  onChange={(e) =>
-                    handleItemEdit(i, e.target.value, item.value)
-                  }
-                  placeholder="Item Name"
-                />
-                <input
-                  key={i}
-                  type="number"
-                  value={item.value}
-                  onChange={(e) => handleItemEdit(i, item.name, e.target.value)}
-                />
-                <button
-                  className="itemDelete"
-                  key={i}
-                  onClick={() => handleItemDelete(i)}
-                >
-                  Delete
+        <fieldset className="borderTabs">
+          <legend className="boderTabsText">Products</legend>
+          <div className="tabs">
+            {tabs.map((tab, i) => (
+              <div key={i}>
+                <button className="tab" onClick={() => handleTabClick(tab)}>
+                  {tab.name}
                 </button>
               </div>
             ))}
-            {/* <div className="itemsNames">
+          </div>
+          <div>
+            <input
+              className="tabNameInput"
+              type="text"
+              value={newTabName}
+              onChange={handleNewTabNameChange}
+              placeholder="New Product"
+            />
+            <div>
+              <button className="addTab" onClick={handleNewTab}>
+                Add Product
+              </button>
+            </div>
+          </div>
+        </fieldset>
+      </section>
+      {activeTab && (
+        <div>
+          <fieldset className="currentTabBorder">
+            <legend className="currentTabBorderText">Current Product</legend>
+            <h2 className="productName">{activeTab.name}</h2>
+            <div className="tabNameChange">
+              <input
+                type="text"
+                onChange={handleTabNameChange}
+                value={activeTab.name}
+              />
+              <button
+                className="deleteTab"
+                onClick={() => handleTabDelete(activeTab)}
+              >
+                Delete
+              </button>
+            </div>
+          </fieldset>
+          <div className="itemsSection">
+            <fieldset className="itemsBorder">
+              <legend className="itemsBorderText">Current Materials</legend>
+              {activeTab.items.map((item, i) => (
+                <div className="singleItem">
+                  <input
+                    key={i}
+                    type="text"
+                    value={item.name}
+                    onChange={(e) =>
+                      handleItemEdit(i, e.target.value, item.value)
+                    }
+                    placeholder="Item Name"
+                  />
+                  <input
+                    key={i}
+                    type="number"
+                    value={item.value}
+                    onChange={(e) =>
+                      handleItemEdit(i, item.name, e.target.value)
+                    }
+                  />
+                  <button
+                    className="itemDelete"
+                    key={i}
+                    onClick={() => handleItemDelete(i)}
+                  >
+                    Delete
+                  </button>
+                </div>
+              ))}
+              {/* <div className="itemsNames">
               <h3>Name</h3>
               {activeTab.items.map((item, i) => (
                 <input
@@ -180,7 +187,7 @@ const App = () => {
                 />
               ))}
             </div> */}
-            {/* <div className="itemsPrices">
+              {/* <div className="itemsPrices">
               <h3>Price</h3>
               {activeTab.items.map((item, i) => (
                 <input
@@ -191,7 +198,7 @@ const App = () => {
                 />
               ))}
             </div> */}
-            {/* <div className="itemsDelete">
+              {/* <div className="itemsDelete">
               {activeTab.items.map((item, i) => (
                 <button
                   className="itemDelete"
@@ -202,6 +209,7 @@ const App = () => {
                 </button>
               ))}
             </div> */}
+            </fieldset>
           </div>
           <div>
             <button className="addItem" onClick={() => handleNewItem("", "")}>

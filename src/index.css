@@ -120,6 +120,31 @@ button {
   align-items: center;
 }
 
+.borderTabs,
+.itemsBorder,
+.currentTabBorder {
+  border: #f8d964 2px solid;
+  padding-bottom: 1rem;
+  margin: 1rem 0;
+}
+
+.itemsBorder {
+  border: #4681f4 2px solid;
+}
+
+.currentTabBorder {
+  border: #33b249 2px solid;
+}
+
+.boderTabsText,
+.itemsBorderText,
+.currentTabBorderText {
+  text-align: left;
+  margin-left: 1rem;
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+
 input {
   padding: 0.5rem 1.5rem;
   font-size: 1rem;
@@ -128,11 +153,6 @@ input {
 .productName {
   margin-top: 0.25rem;
   margin-bottom: 0.5rem;
-}
-
-.itemsTitle > h3 {
-  margin: 0;
-  margin-top: 0.5rem;
 }
 
 .singleItem {
