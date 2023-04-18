@@ -35,7 +35,10 @@ const App = () => {
 
   const handleNewTab = () => {
     if (newTabName !== "") {
-      const newTabs = [...tabs, { name: newTabName, items: [] }];
+      const newTabs = [
+        ...tabs,
+        { name: newTabName, items: [], sellingPrice: 0 },
+      ];
       setTabs(newTabs);
       setActiveTab(newTabs[newTabs.length - 1]);
       setNewTabName("");
@@ -55,6 +58,14 @@ const App = () => {
       i === itemIndex ? { ...item, name, value } : item
     );
     const newTab = { ...activeTab, items: newItems };
+    const newTabs = tabs.map((t) => (t === activeTab ? newTab : t));
+    setTabs(newTabs);
+    setActiveTab(newTab);
+  };
+
+  const handleSellingPriceEdit = (value) => {
+    const newPrice = (activeTab.sellingPrice = value);
+    const newTab = { ...activeTab, sellingPrice: newPrice };
     const newTabs = tabs.map((t) => (t === activeTab ? newTab : t));
     setTabs(newTabs);
     setActiveTab(newTab);
@@ -147,9 +158,8 @@ const App = () => {
             <fieldset className="itemsBorder">
               <legend className="itemsBorderText">Current Materials</legend>
               {activeTab.items.map((item, i) => (
-                <div className="singleItem">
+                <div key={i} className="singleItem">
                   <input
-                    key={i}
                     type="text"
                     value={item.name}
                     onChange={(e) =>
@@ -158,7 +168,6 @@ const App = () => {
                     placeholder="Item Name"
                   />
                   <input
-                    key={i}
                     type="number"
                     value={item.value}
                     onChange={(e) =>
@@ -167,54 +176,21 @@ const App = () => {
                   />
                   <button
                     className="itemDelete"
-                    key={i}
                     onClick={() => handleItemDelete(i)}
                   >
                     Delete
                   </button>
                 </div>
               ))}
-              {/* <div className="itemsNames">
-              <h3>Name</h3>
-              {activeTab.items.map((item, i) => (
-                <input
-                  key={i}
-                  type="text"
-                  value={item.name}
-                  onChange={(e) =>
-                    handleItemEdit(i, e.target.value, item.value)
-                  }
-                />
-              ))}
-            </div> */}
-              {/* <div className="itemsPrices">
-              <h3>Price</h3>
-              {activeTab.items.map((item, i) => (
-                <input
-                  key={i}
-                  type="number"
-                  value={item.value}
-                  onChange={(e) => handleItemEdit(i, item.name, e.target.value)}
-                />
-              ))}
-            </div> */}
-              {/* <div className="itemsDelete">
-              {activeTab.items.map((item, i) => (
+              <div>
                 <button
-                  className="itemDelete"
-                  key={i}
-                  onClick={() => handleItemDelete(i)}
+                  className="addItem"
+                  onClick={() => handleNewItem("", "")}
                 >
-                  Delete
+                  Add Item
                 </button>
-              ))}
-            </div> */}
+              </div>
             </fieldset>
-          </div>
-          <div>
-            <button className="addItem" onClick={() => handleNewItem("", "")}>
-              Add Item
-            </button>
           </div>
           <section className="tabTotal">
             <h1>
@@ -223,10 +199,34 @@ const App = () => {
                 .reduce((total, item) => total + parseFloat(item.value), 0)
                 .toFixed(2)}
             </h1>
+            <div className="itemPrice">
+              <h1>Price: $</h1>
+              <input
+                type="number"
+                value={activeTab.sellingPrice}
+                onChange={(e) => {
+                  handleSellingPriceEdit(e.target.value);
+                }}
+              />
+            </div>
+            <h1>
+              Profit:{" "}
+              {(
+                ((activeTab.sellingPrice -
+                  activeTab.items
+                    .reduce((total, item) => total + parseFloat(item.value), 0)
+                    .toFixed(2)) /
+                  activeTab.items
+                    .reduce((total, item) => total + parseFloat(item.value), 0)
+                    .toFixed(2)) *
+                100
+              ).toFixed(2)}
+              %
+            </h1>
           </section>
         </div>
       )}
-      <h1>Overall Total: ${handleOverallTotal().toFixed(2)}</h1>
+      <h1>Overall Total: ${handleOverallTotal()}</h1>
     </main>
   );
 };
