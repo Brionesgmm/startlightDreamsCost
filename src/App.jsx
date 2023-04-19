@@ -226,7 +226,7 @@ const App = () => {
           </section>
         </div>
       )}
-      <h1>Overall Total: ${handleOverallTotal()}</h1>
+      <h1>Overall Cost: ${handleOverallTotal().toFixed(2)}</h1>
     </main>
   );
 };
