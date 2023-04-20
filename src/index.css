@@ -122,10 +122,14 @@ button {
 
 .borderTabs,
 .itemsBorder,
-.currentTabBorder {
+.currentTabBorder,
+.profitBorder {
   border: #f8d964 2px solid;
   padding-bottom: 1rem;
   margin: 1rem 0;
+}
+.profitBorder {
+  border: rgb(123, 31, 162) 2px solid;
 }
 
 .itemsBorder {
@@ -138,7 +142,8 @@ button {
 
 .boderTabsText,
 .itemsBorderText,
-.currentTabBorderText {
+.currentTabBorderText,
+.profitBorderText {
   text-align: left;
   margin-left: 1rem;
   font-size: 1.25rem;

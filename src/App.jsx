@@ -193,36 +193,45 @@ const App = () => {
             </fieldset>
           </div>
           <section className="tabTotal">
-            <h1>
-              Total:{" $"}
-              {activeTab.items
-                .reduce((total, item) => total + parseFloat(item.value), 0)
-                .toFixed(2)}
-            </h1>
-            <div className="itemPrice">
-              <h1>Price: $</h1>
-              <input
-                type="number"
-                value={activeTab.sellingPrice}
-                onChange={(e) => {
-                  handleSellingPriceEdit(e.target.value);
-                }}
-              />
-            </div>
-            <h1>
-              Profit:{" "}
-              {(
-                ((activeTab.sellingPrice -
-                  activeTab.items
-                    .reduce((total, item) => total + parseFloat(item.value), 0)
-                    .toFixed(2)) /
-                  activeTab.items
-                    .reduce((total, item) => total + parseFloat(item.value), 0)
-                    .toFixed(2)) *
-                100
-              ).toFixed(2)}
-              %
-            </h1>
+            <fieldset className="profitBorder">
+              <legend className="profitBorderText">Profit</legend>
+              <h1>
+                Total:{" $"}
+                {activeTab.items
+                  .reduce((total, item) => total + parseFloat(item.value), 0)
+                  .toFixed(2)}
+              </h1>
+              <div className="itemPrice">
+                <h1>Price: $</h1>
+                <input
+                  type="number"
+                  value={activeTab.sellingPrice}
+                  onChange={(e) => {
+                    handleSellingPriceEdit(e.target.value);
+                  }}
+                />
+              </div>
+              <h1>
+                Profit:{" "}
+                {(
+                  ((activeTab.sellingPrice -
+                    activeTab.items
+                      .reduce(
+                        (total, item) => total + parseFloat(item.value),
+                        0
+                      )
+                      .toFixed(2)) /
+                    activeTab.items
+                      .reduce(
+                        (total, item) => total + parseFloat(item.value),
+                        0
+                      )
+                      .toFixed(2)) *
+                  100
+                ).toFixed(2)}
+                %
+              </h1>
+            </fieldset>
           </section>
         </div>
       )}
