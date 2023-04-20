@@ -271,7 +271,7 @@ input {
 }
 
 .siteName > .magic > .magic-star > svg > path {
-  fill: var(--violet);
+  fill: yellow;
 }
 
 .siteName > .magic > .magic-text {
